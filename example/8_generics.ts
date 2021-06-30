@@ -21,15 +21,28 @@ interface Developer<T> {
 const tony: Developer<number> = { name: 'tony', age: 100 };
 
 // 제네릭 타입 제한 - 구체적인 타입
-function getNumberAndArray<T>(value: T): T {
-  value.length; // X
-  return value;
-}
+// function getNumberAndArray<T>(value: T): T {
+//   value.length; // X
+//   return value;
+// }
 
 function getNumberAndArray<T>(value: T[]): T[] {
   value.length; // O
   return value;
 }
+
+// 제네릭 타입 제한 - 정의된 타입 이용
+interface LengthType {
+  length : number
+}
+
+function logTextNumber<T extends LengthType>(text: T): T{
+  text.length
+  return text
+}
+
+logTextNumber({length:10})
+
 
 // 제네릭 타입 제한 - keyof
 interface ShoppingItems {
@@ -48,6 +61,6 @@ function getAllowedOptions<T extends keyof ShoppingItems>(option: T): T {
     return option;
   }
 }
-getAllowedOptions('nothing');
+getAllowedOptions('name');
 // const a = getAllowedOptions('name');
 // a.toUpperCase(); // Name

@@ -5,6 +5,11 @@ function logA(a = 'a') {
   return b;
 }
 
+function getB(b=10){
+
+  return b;
+}
+
 interface Dropdown<T> {
   value: T
   title: string;
